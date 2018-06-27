@@ -1,0 +1,48 @@
+
+Equipamentos:
+
+Iphone 5se (ativador-55a4a.firebaseapp.com) web
+Mororola GPlay (ativador-anubz.firebaseapp.com) pwa
+Sansung Galaxy 3 (ativador-55a4a.firebaseapp.com) web
+
+Iphone5 e Motorola - 100% de Bateria
+Condição de sinal - Sem Sinal - com pequenas conexões.
+
+Cronograma:
+
+12:30 - Inicio
+13:46 - os 3 telefones app reiniciado
+14:10 - pausa almoço
+14:40 - retorno
+15:03 - motorola crash
+15:15 - android reiniciou o telefone
+15:28 - android - crash
+15:30 iphone-problemas 
+16:30 baterias a 10% iphone e motorola
+
+Numero de Testes
+
+Iphone: "32" (ativador-55a4a.firebaseapp.com) web
+Precisao do gps: +- 5m.
+- 32 dados recupeados
+Dados recuperados Offline:
+	Database: CloudFirestore - 32
+                 	      RealTime Database - 4
+
+Motorola GPlay:  "67"  (ativador-anubz.firebaseapp.com) pwa - WiFi e Dados Celulares - Deligados
+Precisao do gps: +- 10m.
+- 67 dados recuperados
+
+Quando ligado no WiFi, recuperou automaticamente os 67 dados.
+	Database: CloudFirestore - 14
+		     RealTime Database - 67	
+
+
+Sansung Galaxy 3: "87"  (ativador-55a4a.firebaseapp.com) web
+
+ - 87 Dados recuperados:
+
+Os dados foram recuperados quando conectados no WiFi, porem só foram sincronizados quando feito mais 1 input. Não sincronizou automaticamente na rede celular(Talvez configurações).
+
+Database: CloudFirestore - 0
+                 RealTime Database - 87	

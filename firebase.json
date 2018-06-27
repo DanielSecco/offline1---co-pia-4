@@ -1,0 +1,66 @@
+{
+  "database": {
+    "rules": "database.rules.json"
+  },
+  "firestore": {
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
+  },
+  "hosting": {
+    "public": "dist",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+      "headers": [
+      {
+        "source" : "img/*.@(jpg|jpeg|gif|png)",
+        "headers" : [ {
+            "key" : "Cache-Control",
+            "value" : "max-age=1000000" //1 week+
+        } ]
+      },
+           {
+        "source" : "img/**/*.@(jpg|jpeg|gif|png)",
+        "headers" : [ {
+            "key" : "Cache-Control",
+            "value" : "max-age=1000000" //1 week+
+        } ]
+      },
+           {
+        "source" : "js/*.@(js|map)",
+        "headers" : [ {
+            "key" : "Cache-Control",
+            "value" : "max-age=1000000" //1 week+
+        } ]
+      },
+           {
+        "source" : "css/**",
+        "headers" : [ {
+            "key" : "Cache-Control",
+            "value" : "max-age=1000000" //1 week+
+        } ]
+      },
+           {
+        "source" : "src/js/**",
+        "headers" : [ {
+            "key" : "Cache-Control",
+            "value" : "max-age=1000000" //1 week+
+        } ]
+      },
+           {
+        "source" : "service-worker.js",
+        "headers" : [ {
+            "key" : "Cache-Control",
+            "value" : "max-age=0" //1 week+
+        } ]
+      }
+    
+    ]
+  },
+    
+  "storage": {
+    "rules": "storage.rules"
+  }
+}
