@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.2.0/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.16c0a68554c828102dfd9bd1be10cf76.js"
+  "/precache-manifest.c37326d361354c9438d04fbb38dd56a5.js"
 );
 
 importScripts('./src/js/idb.js');
@@ -22,99 +22,17 @@ importScripts('./src/js/utility.js');
 importScripts('./src/js/fetch.js');
 
 workbox.setConfig({ debug: true });
-//workbox.core.setLogLevel(workbox.core.LOG_LEVELS.debug);
-/*workbox.routing.registerRoute(
-  /\.(?:js|css)$/,
-  workbox.strategies.cacheFirst({
-    cacheName: 'static-resources',
-	  plugins: [
-      new workbox.cacheableResponse.Plugin({
-        statuses: [200, 404],
-        headers: {
-         
-              'Cache-Control': 'max-age=360000'
-        },
-      })
-    ]
-  }),
-);*/
-/*workbox.routing.registerRoute('https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css', workbox.strategies.staleWhileRevalidate({
-  cacheName: 'material-css',
-      plugins: [
-      new workbox.expiration.Plugin({
-         //statuses: [200, 404],
-        // Only cache requests for a week
-        maxAgeSeconds: 7 * 24 * 60 * 60,
-        // Only cache 10 requests.
-        maxEntries: 10,
-      }),
-    ]
-}));*/
-
-workbox.routing.registerRoute('https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css', workbox.strategies.staleWhileRevalidate({
-  cacheName: 'material-css',
-      plugins: [
-      new workbox.expiration.Plugin({
-         //statuses: [200, 404],
-        // Only cache requests for a week
-        maxAgeSeconds: 36000,
-        // Only cache 10 requests.
-        maxEntries: 10,
-      }),
-    ]
-}));
-workbox.routing.registerRoute('https://storage.googleapis.com/workbox-cdn/releases/3.2.0/workbox-sw.js', workbox.strategies.staleWhileRevalidate({
-  cacheName: 'workbox',
-      plugins: [
-      new workbox.expiration.Plugin({
-         //statuses: [200, 404],
-        // Only cache requests for a week
-        maxAgeSeconds: 36000,
-        // Only cache 10 requests.
-      maxEntries: 20,
-      }),
-    ]
-}));
 
 workbox.core.setCacheNameDetails({prefix: "offline1"});
-self.__precacheManifest = [].concat(self.__precacheManifest || []);
-workbox.precaching.suppressWarnings();
-workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
-
-workbox.routing.registerRoute(function (routeData) {
-  return (routeData.event.request.headers.get('accept').includes('text/html'));
-}, function(args) {
-  return caches.match(args.event.request)
-    .then(function (response) {
-      if (response) {
-        return response;
-      } else {
-        return fetch(args.event.request)
-          .then(function (res) {
-            return caches.open('static-resources')
-              .then(function (cache) {
-  
-                cache.put(args.event.request.url, res.clone());
-                return res;
-              })
-          })
-          .catch(function (err) {
-            return caches.match('/offline.html')
-              .then(function (res) {
-                return res;
-              });
-          });
-      }
-    })
-});
-
-
 
 /**
  * The workboxSW.precacheAndRoute() method efficiently caches and responds to
  * requests for URLs in the manifest.
  * See https://goo.gl/S9QRab
  */
+self.__precacheManifest = [].concat(self.__precacheManifest || []);
+workbox.precaching.suppressWarnings();
+workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
 
 

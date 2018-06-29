@@ -170,7 +170,7 @@ if ('serviceWorker' in navigator && 'PushManager' in window) {
     console.warn('Push messaging is not supported');
     pushButton.textContent = 'Push Not Supported';
 };
-    */
+    
     ////////////////////////////////////
     
     
@@ -192,5 +192,8 @@ firestore.collection("sid").where("cod_Tree", "==", 6).get()
     })
     .catch(function (error) {
         console.log("Error getting documents: ", error);
-    });}
+    });
+*/
+
+}
 

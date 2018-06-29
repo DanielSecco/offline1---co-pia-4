@@ -42,6 +42,34 @@ firestore.settings({
     timestampsInSnapshots: true
 });
 firestore.enablePersistence().then(function () {
+    
+    var networkDataReceived = false;
+fetch(config.urlTree)
+    .then(function (response) {
+        console.table(response);
+        return response.json();
+    })
+    .then(function (data) {
+        networkDataReceived = true;
+        window.furlf = data;
+        // console.log(data.foto + '<???>' + jhg);
+        console.log('From web FETCH 1 >', data);
+        var dataArray = [];
+        var uio = [];
+        for (var key in data) {
+            dataArray.push(data[key]);
+            uio.push(data[key]);
+            // writeData('trees', data[key]);
+        }
+        updateUI(dataArray);
+        //window.ltt = uio[0];
+        window.dados1 = uio;
+        // console.log(uio.length + '<???>' + jhg);
+        return window.dados1, window.furlf;
+    }).catch(function (err) {
+        console.log(err);
+    });
+    
         console.log('persistence ok')
     })
     .catch(function (err) {
@@ -95,32 +123,7 @@ var myInit = {
     mode: 'cors'
 };
 //////
-var networkDataReceived = false;
-fetch(config.urlTree)
-    .then(function (response) {
-        console.table(response);
-        return response.json();
-    })
-    .then(function (data) {
-        networkDataReceived = true;
-        window.furlf = data;
-        // console.log(data.foto + '<???>' + jhg);
-        console.log('From web FETCH 1 >', data);
-        var dataArray = [];
-        var uio = [];
-        for (var key in data) {
-            dataArray.push(data[key]);
-            uio.push(data[key]);
-            // writeData('trees', data[key]);
-        }
-        updateUI(dataArray);
-        //window.ltt = uio[0];
-        window.dados1 = uio;
-        // console.log(uio.length + '<???>' + jhg);
-        return window.dados1, window.furlf;
-    }).catch(function (err) {
-        console.log(err);
-    });
+
 /*networkDataReceived = false;
 fetch(config.url2)
     .then(function (res) {

@@ -23,7 +23,7 @@
   </div>
 </template>
 <script>
-    var downloadURL ;
+    var downloadURL;
     import {
         firestore
     } from '@/main.js'
@@ -56,9 +56,6 @@
                 var metadata = {
                     contentType: 'image/jpeg'
                 };
-        
-                
-                
             },
             createImage(file) {
                 var dataT = new Date();
@@ -81,7 +78,6 @@
                         user: this.$store.getters.getterUsrN,
                         counts: '',
                         downloadlink: ''
-
                     };
                     console.log('variavel>', post);
                     $("#imgLoad").remove();
@@ -143,9 +139,7 @@
                 $("#imgLoad").remove();
             },
             avancar() {
-                
-               // post.downloadlink =  downloadURL ;
-                
+                // post.downloadlink =  downloadURL ;
                 firestore.collection("sid").doc(post.id).set(post)
                     .then(function(docRef) {
                         console.log("Document written with ID: ", post.id);
@@ -191,41 +185,37 @@
                 this.$router.push('/');
             },
             carregar() {
-                
-                
-                for(var i =1; i < 400 ; i++ ){
-                     var ind = new Date().toISOString();
-                    post.id = '"' + i +'"' ;
+                for (var i = 1; i < 400; i++) {
+                    var ind = new Date().toISOString();
+                    post.id = '"' + i + '"';
                     post.counts = i;
                     console.log(i);
-                    firestore.collection("sid3").doc('"' + i +'"').set(post)
-                    .then(function(docRef) {
-                        console.log("Document written with ID: " + '  >'+ i);
-                    })
-                    .catch(function(error) {
-                        console.error("Error adding document: ", error);
-                    });
-                    
-                     if ('serviceWorker' in navigator && 'SyncManager' in window) {
-                    navigator.serviceWorker.ready
-                        .then(function(sw) {
-                            writeData('sync-posts', post)
-                                .then(function() {
-                                    return sw.sync.register('sync-new-posts');
-                                })
-                                .then(function() {
-                                    var data = {
-                                        message: 'Your Post was saved for syncing!'
-                                    };
-                                   // noty("success", data.message, post.id);
-                                    console.log(data);
-                                })
-                                .catch(function(err) {
-                                    console.log(err);
-                                });
+                    firestore.collection("sid3").doc('"' + i + '"').set(post)
+                        .then(function(docRef) {
+                            console.log("Document written with ID: " + '  >' + i);
                         })
-                };
-                    
+                        .catch(function(error) {
+                            console.error("Error adding document: ", error);
+                        });
+                    if ('serviceWorker' in navigator && 'SyncManager' in window) {
+                        navigator.serviceWorker.ready
+                            .then(function(sw) {
+                                writeData('sync-posts', post)
+                                    .then(function() {
+                                        return sw.sync.register('sync-new-posts');
+                                    })
+                                    .then(function() {
+                                        var data = {
+                                            message: 'Your Post was saved for syncing!'
+                                        };
+                                        // noty("success", data.message, post.id);
+                                        console.log(data);
+                                    })
+                                    .catch(function(err) {
+                                        console.log(err);
+                                    });
+                            })
+                    };
                 };
             }
         }
